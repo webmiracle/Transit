@@ -1,0 +1,37 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <AMV_Stoptransit>
+            <version>0.1.0</version>
+        </AMV_Stoptransit>
+    </modules>
+    <global>
+        <models>
+            <amv_stoptransit>
+                <class>AMV_Stoptransit_Model</class>
+            </amv_stoptransit>
+        </models>
+        <blocks>
+            <amv_stoptransit>
+                <class>AMV_Stoptransit_Block</class>
+            </amv_stoptransit>
+            <checkout>
+                <rewrite>
+                    <links>AMV_Stoptransit_Block_Checkout_Links</links>
+                </rewrite>
+            </checkout>
+        </blocks>
+        <helpers>
+            <amv_stoptransit>
+                <class>AMV_Stoptransit_Helper</class>
+            </amv_stoptransit>
+        </helpers>
+        <resources>
+            <amv_stoptransit_setup>
+                <setup>
+                    <module>AMV_Stoptransit</module>
+                </setup>
+            </amv_stoptransit_setup>
+        </resources>
+    </global>
+</config>

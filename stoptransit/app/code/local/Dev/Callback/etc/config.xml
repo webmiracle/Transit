@@ -1,0 +1,37 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <Dev_Callback>
+            <version>0.1.0</version>
+        </Dev_Callback>
+    </modules>
+    <global>
+        <helpers>
+            <dev_callback>
+                <class>Dev_Callback_Helper</class>
+            </dev_callback>
+        </helpers>
+        <template>
+            <email>
+                <callback_email_template module="dev_callback">
+                    <label>Callback template</label>
+                    <file>callback.html</file>
+                    <type>html</type>
+                </callback_email_template>
+            </email>
+        </template>
+    </global>
+    <frontend>
+        <routers>
+            <dev_callback>
+                <use>standard</use>
+                <args>
+                    <module>Dev_Callback</module>
+                    <frontName>callback</frontName>
+                </args>
+            </dev_callback>
+        </routers>
+    </frontend>
+
+</config>
+

@@ -1,0 +1,45 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <Import_Product>
+            <version>0.1.0</version>
+        </Import_Product>
+    </modules>
+    <global>
+        <models>
+            <import_product>
+                <class>Import_Product_Model</class>
+            </import_product>
+        </models>
+        <blocks>
+            <import_product>
+                <class>Import_Product_Block</class>
+            </import_product>
+        </blocks>
+        <helpers>
+            <import_product>
+                <class>Import_Product_Helper</class>
+            </import_product>
+        </helpers>
+        <resources>
+            <import_product_setup>
+                <setup>
+                    <module>Import_Product</module>
+                </setup>
+            </import_product_setup>
+        </resources>
+    </global>
+
+    <crontab>
+        <jobs>
+            <catalog_product_import>
+                <schedule>
+                    <cron_expr>0 0 * * *</cron_expr>
+                </schedule>
+                <run>
+                    <model>import_product/handler::import</model>
+                </run>
+            </catalog_product_import>
+        </jobs>
+    </crontab>
+</config>

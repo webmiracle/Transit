@@ -1,0 +1,34 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <Banner_Producer>
+            <version>0.1.0</version>
+        </Banner_Producer>
+    </modules>
+    <global>
+        <models>
+            <banner_producer>
+                <class>Banner_Producer_Model</class>
+                <resourceModel>banner_producer_resource</resourceModel>
+            </banner_producer>
+            <banner_producer_resource>
+                <class>Banner_Producer_Model_Resource</class>
+                <entities>
+                    <producer>
+                        <table>proizv</table>
+                    </producer>
+                </entities>
+            </banner_producer_resource>
+        </models>
+        <blocks>
+            <banner_producer>
+                <class>Banner_Producer_Block</class>
+            </banner_producer>
+        </blocks>
+        <helpers>
+            <banner_producer>
+                <class>Banner_Producer_Helper</class>
+            </banner_producer>
+        </helpers>
+    </global>
+</config>

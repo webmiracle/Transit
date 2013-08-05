@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <AMV_Stoptransit>
+            <active>true</active>
+            <codePool>local</codePool>
+        </AMV_Stoptransit>
+    </modules>
+</config>

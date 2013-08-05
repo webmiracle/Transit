@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <Dev_Callback>
+            <active>true</active>
+            <codePool>local</codePool>
+        </Dev_Callback>
+    </modules>
+</config>

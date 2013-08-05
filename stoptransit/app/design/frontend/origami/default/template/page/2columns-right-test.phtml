@@ -1,0 +1,103 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="<?php echo $this->getLang() ?>" lang="<?php echo $this->getLang() ?>">
+<head>
+    <?php echo $this->getChildHtml('head') ?>
+</head>
+<body<?php echo $this->getBodyClass() ? ' class="' . $this->getBodyClass() . '"' : '' ?>>
+<?php echo $this->getChildHtml('after_body_start') ?>
+<div class="wrapper"><?php echo $this->getChildHtml('global_notices') ?>
+    <div class="page">
+        <?php echo $this->getChildHtml('header') ?>
+        <div class="main-container col2-right-layout">
+            <div class="main">
+                <?php echo $this->getChildHtml('breadcrumbs') ?>
+                <div class="col-main">
+                    <?php echo $this->getChildHtml('global_messages') ?>
+                    <?php if (Mage::getBlockSingleton('page/html_header')->getIsHomePage()) : ?>
+                        <div style='cursor:pointer;margin-left:17px;margin-top:10px;height:250px;'>
+                            <?php $banners = Mage::helper('banner_banner')->getRandoBannerById(1); ?>
+                            <?php $index = 0; ?>
+                            <?php if ($banners) : ?>
+                                <?php foreach ($banners as $banner) : ?>
+                                    <div class='banner_main <?php if ($index == 0) echo 'first_banner_main' ?>' style='position:absolute;'>
+                                        <?php $index++; ?>
+                                        <?php $imageInfo = pathinfo($banner->getImgBaner());
+                                        $imageExtension = strtolower($imageInfo['extension']); ?>
+                                        <?php if (in_array($imageExtension, Mage::helper('banner_banner')->getImageTypes)) : ?>
+                                            <a target='_blank' href='/img/<?php echo $banner->getImgBaner() ?>'>
+                                                <img width='670' height='250' src='/img/<?php echo $banner->getImgBaner() ?>' />
+                                            </a>;
+                                        <?php else : ?>
+                                            <object width='670' height='250' style='cursor:pointer;'>
+                                                <param name='movie' value='/img/<?php echo $banner->getImgBaner() ?>'>
+                                                <param name='wmode' value='opaque' />
+                                                <embed src='/img/<?php echo $banner->getImgBaner() ?>' wmode='opaque' width='670' height='250' style='cursor:pointer;'></embed>
+                                            </object>
+                                        <?php endif; ?>
+                                    </div>
+                                <?php endforeach; ?>
+                            <?php endif; ?>
+                        </div>    <?php endif; ?>
+                    <?php echo $this->getChildHtml('content') ?>
+                    <div style='clear:both;'></div>
+                    <div class='proizvod'>
+                        <?php global $proizv;  echo $proizv; ?>
+                    </div>
+                    <?php if (Mage::getBlockSingleton('page/html_header')->getIsHomePage()) { ?>
+                        <script type="text/javascript">            jQuery(function () {
+                                jQuery(".gallery").jCarouselLite({ btnNext: ".nnext", btnPrev: ".pprev", speed: 500, auto: null});
+                                jQuery(".galleryy").jCarouselLite({ visible: 5, speed: 1500, auto: 0.0001, easing: "linear" });
+                            });
+                        </script>
+                        <?php echo $this->getLayout()->createBlock('cms/block')->setBlockId('news_block')->toHtml() ?>
+                        <?php echo $this->getLayout()->createBlock('core/template')->setTemplate('catalog/brands.phtml')->toHtml() ?>
+                    <?php } ?>
+                </div>
+                <div class="col-right sidebar"><?php echo $this->getChildHtml('right') ?>
+                    <?php if ((strpos($href, "default/checkout") == 0) && (strpos($href, "default/contact") == 0) && (strpos($href, "default/dostavka") == 0) && (strpos($href, "default/garantii") == 0) && (strpos($href, "default/specialnye-predlozheniya") == 0) && (strpos($href, "default/news") == 0)) : ?>        <?php $limit = 1; ?>        <?php if (Mage::getBlockSingleton('page/html_header')->getIsHomePage()) $limit = 2; ?>                <?php $banners = Mage::helper('banner_banner')->getRandoBannerById(2, $limit); ?>                <?php if ($banners) : ?>                <?php foreach ($banners as $banner) : ?>
+                        <div style='cursor:pointer;margin-top:15px'>
+                            <?php $imageInfo = pathinfo($banner->getImgBaner());
+                            $imageExtension = strtolower($imageInfo['extension']); ?>                        <?php if (in_array($imageExtension, Mage::helper('banner_banner')->getImageTypes)) : ?>
+                                <a target='_blank' href='/img/<?php echo $banner->getImgBaner() ?>'>
+                                    <img width='250' height='250' src='/img/<?php echo $banner->getImgBaner() ?>' />
+                                </a>;                        <?php else : ?>
+                                <object width='250' height='250' style='cursor:pointer;'>
+                                    <param name='movie' value='/img/<?php echo $banner->getImgBaner() ?>'>
+                                    <param name='wmode' value='opaque' />
+                                    <embed src='/img/<?php echo $banner->getImgBaner() ?>' wmode='opaque' width='250' height='290' style='cursor:pointer;'></embed>
+                                </object>
+                            <?php endif; ?>
+                        </div>
+                    <?php endforeach; ?>
+                    <?php endif; ?>
+                        <div style='margin-top:10px;'>
+                            <script type="text/javascript" src="http://userapi.com/js/api/openapi.js?49"></script>
+                            <div id="vk_groups"></div>
+                            <script type="text/javascript">
+                                VK.Widgets.Group("vk_groups", {mode: 0, width: "250", height: "290"}, 27522260);
+                            </script>
+                        </div>
+                        <?php if (Mage::getBlockSingleton('page/html_header')->getIsHomePage()) : ?>
+                            <div style='margin-top:10px;'>
+                                <div id="fb-root"></div>
+                                <script>(function (d, s, id) {
+                                        var js, fjs = d.getElementsByTagName(s)[0];
+                                        if (d.getElementById(id)) return;
+                                        js = d.createElement(s);
+                                        js.id = id;
+                                        js.src = "//connect.facebook.net/ru_RU/all.js#xfbml=1";
+                                        fjs.parentNode.insertBefore(js, fjs);
+                                    }(document, 'script', 'facebook-jssdk'));</script>
+                                <div class="fb-like-box" data-href="https://www.facebook.com/pages/StopTransit/278373488879502" data-width="250" data-height="290" data-show-faces="true" data-stream="false" data-header="true"></div>
+                            </div>
+                        <?php endif; ?>
+                    <?php endif; ?>
+                </div>
+            </div>
+        </div><?php echo $this->getChildHtml('footer') ?>
+        <?php echo $this->getChildHtml('before_body_end') ?>
+    </div>
+</div>
+<?php echo $this->getAbsoluteFooter() ?>
+</body>
+</html>

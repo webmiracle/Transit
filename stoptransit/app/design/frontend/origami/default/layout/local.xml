@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<layout>
+    <default>
+
+        <remove name="wishlist_link" />
+        <remove name="checkout_cart_link" />
+
+        <reference name="head">
+            <action method="addCss">
+                <stylesheet>css/ui.totop.css</stylesheet>
+            </action>
+        </reference>
+
+        <reference name="top.links">
+            <block type="checkout/links" name="checkout_cart_link_custom">
+                <action method="addCartLink"></action>
+            </block>
+        </reference>
+
+        <reference name="before_body_end">
+            <block type="core/template" name="call-back" template="page/callback.phtml" />
+        </reference>
+    </default>
+
+</layout>

@@ -1,0 +1,34 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <Banner_Banner>
+            <version>0.1.0</version>
+        </Banner_Banner>
+    </modules>
+    <global>
+        <models>
+            <banner_banner>
+                <class>Banner_Banner_Model</class>
+                <resourceModel>banner_resource</resourceModel>
+            </banner_banner>
+            <banner_resource>
+                <class>Banner_Banner_Model_Resource</class>
+                <entities>
+                    <banner>
+                        <table>baners</table>
+                    </banner>
+                </entities>
+            </banner_resource>
+        </models>
+        <blocks>
+            <banner_banner>
+                <class>Banner_Banner_Block</class>
+            </banner_banner>
+        </blocks>
+        <helpers>
+            <banner_banner>
+                <class>Banner_Banner_Helper</class>
+            </banner_banner>
+        </helpers>
+    </global>
+</config>

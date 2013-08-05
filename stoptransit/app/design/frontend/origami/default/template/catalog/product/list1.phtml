@@ -1,0 +1,23 @@
+<?php
+	$collection = Mage::getModel('catalog/product')->getCollection()->addAttributeToSelect('*');
+		if(isset($_GET['id'])){
+			$collection->addAttributeToFilter($_GET['cat'],$_GET['id']);
+		}else{
+			$collection->addAttributeToFilter('status',1);
+		}
+		//$collection->setPageSize(9);
+		//$collection->setPage(1, 9);
+		Mage::getSingleton('catalog/product_visibility')->addVisibleInCatalogFilterToCollection($collection);       
+		$magento_block = Mage::getSingleton('core/layout');
+		$productsHtml  = $magento_block->createBlock('catalog/product_list');
+		$productsHtml ->setTemplate('catalog/product/listproizvoditel.phtml')->setCollection($collection);
+		echo $productsHtml ->toHTML();
+		
+?>
+
+
+
+
+	
+
+

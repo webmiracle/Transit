@@ -1,0 +1,329 @@
+<?xml version="1.0"?>
+<layout version="0.1.0">
+    <default translate="label" module="page">
+        <label>All Pages</label>
+        <block type="page/html" name="root" output="toHtml" template="page/3columns.phtml">
+            <block type="page/html_head" name="head" as="head">            <!--jquery scripts-->
+                <action method="addJs">
+                    <script>jquery/jquery-1.7.1.min.js</script>
+                </action>
+                <action method="addJs">
+                    <script>jquery/jquery-ui.min.js</script>
+                </action>
+                <!--scrollbar-->
+                <action method="addJs">
+                    <script>jquery/custom_croll/jquery.easing.1.3.js</script>
+                </action>
+                <action method="addJs">
+                    <script>jquery/custom_croll/jquery.mCustomScrollbar.js</script>
+                </action>
+                <action method="addJs">
+                    <script>jquery/custom_croll/jquery.mousewheel.min.js</script>
+                </action>
+                <action method="addJs">
+                    <script>jquery/custom_croll/settings.js</script>
+                </action>
+                <action method="addJs">
+                    <script>jquery/youtube.js</script>
+                </action>
+                <action method="addJs">
+                    <script>jquery/menu/menu-collapsed.js</script>
+                </action>
+                <!--END scrollbar-->            <!--jquery slider-->
+                <action method="addJs">
+                    <script>jquery/slider/basic-jquery-slider.js</script>
+                </action>
+                <action method="addJs">
+                    <script>jquery/slider/settings.js</script>
+                </action>
+                <!--END slider-->            <!--jquery menu-->            <!--END menu-->            <!--HIDEPANEL-->            <!--END HIDEPANEL-->
+                <action method="addJs">
+                    <script>jquery/hideblock.js</script>
+                </action>
+                <!--END jquery scripts-->
+                <action method="addJs">
+                    <script>prototype/prototype.js</script>
+                </action>
+                <action method="addJs">
+                    <script>lib/ccard.js</script>
+                </action>
+                <action method="addJs">
+                    <script>prototype/validation.js</script>
+                </action>
+                <action method="addJs">
+                    <script>scriptaculous/builder.js</script>
+                </action>
+                <action method="addJs">
+                    <script>scriptaculous/effects.js</script>
+                </action>
+                <action method="addJs">
+                    <script>scriptaculous/dragdrop.js</script>
+                </action>
+                <action method="addJs">
+                    <script>scriptaculous/controls.js</script>
+                </action>
+                <action method="addJs">
+                    <script>scriptaculous/slider.js</script>
+                </action>
+                <action method="addJs">
+                    <script>varien/js.js</script>
+                </action>
+                <action method="addJs">
+                    <script>varien/form.js</script>
+                </action>
+                <action method="addJs">
+                    <script>varien/menu.js</script>
+                </action>
+                <action method="addJs">
+                    <script>mage/translate.js</script>
+                </action>
+                <action method="addJs">
+                    <script>mage/cookies.js</script>
+                </action>
+                <block type="page/js_cookie" name="js_cookies" template="page/js/cookie.phtml" />
+                <action method="addCss">
+                    <stylesheet>css/styles.css</stylesheet>
+                </action>
+                <action method="addCss">
+                    <stylesheet>css/slider.css</stylesheet>
+                </action>
+                <action method="addCss">
+                    <stylesheet>css/jquery.mCustomScrollbar.css</stylesheet>
+                </action>
+            </block>
+            <block type="core/text_list" name="after_body_start" as="after_body_start" translate="label">
+                <label>Page Top</label>
+            </block>
+            <block type="page/html_notices" name="global_notices" as="global_notices"
+                   template="page/html/notices.phtml" />
+            <block type="page/html_header" name="header" as="header">
+                <block type="page/template_links" name="top.links" as="topLinks" />
+                <!--<block type="directory/top-links-reviewscurrency" name="store_currency_selector" as="store_currency_selector" template="directory/currency.phtml" />-->
+                <block type="page/switch" name="store_language" as="store_language"
+                       template="page/switch/languages.phtml" />
+                <block type="core/text_list" name="top.menu" as="topMenu" translate="label">
+                    <block type="cms/block" name="cms_block_name" translate="label">
+                        <action method="setBlockId">
+                            <block_id>main_top_menu</block_id>
+                        </action>
+                        <label>Navigation Bar</label>
+                    </block>
+                    <block type="cms/block" name="cms_email_phone" translate="label">
+                        <action method="setBlockId">
+                            <block_id>phone_cms_block</block_id>
+                        </action>
+                        <label>Email and phone</label>
+                    </block>
+                </block>
+                <block type="page/html_wrapper" name="top.container" as="topContainer" translate="label">
+                    <label>Page Header</label>
+                    <action method="setElementClass">
+                        <value>top-container</value>
+                    </action>
+                </block>
+            </block>
+            <block type="page/html_breadcrumbs" name="breadcrumbs" as="breadcrumbs" />
+            <block type="core/text_list" name="left" as="left" translate="label">
+                <label>Left Column</label>
+                <remove name="left.permanent.callout" />
+                <remove name="tags_popular" />
+                <remove name="left.newsletter" />
+                <remove name="currency" />
+            </block>
+            <block type="core/messages" name="global_messages" as="global_messages" />
+            <block type="core/messages" name="messages" as="messages" />
+            <block type="core/text_list" name="content" as="content" translate="label">
+                <label>Main Content Area</label>
+            </block>
+            <block type="core/text_list" name="right" as="right" translate="label">
+                <label>Right Column</label>
+                <block type="cms/block" name="cms_block_contacts" translate="label">
+                    <action method="setBlockId">
+                        <block_id>contacts_block</block_id>
+                    </action>
+                    <label>Navigation Bar</label>
+                </block>
+                <remove name="paypal.partner.right.logo" />
+                <remove name="right.permanent.callout" />
+                <remove name="cart_sidebar" />
+                <remove name="catalog.compare.sidebar" />
+                <remove name="checkout_overview" />
+                <remove name="wishlist_sidebar" />
+                <block type="catalog/navigation" name="right.leftnav" before="currency"
+                      template="catalog/navigation/top.phtml" />
+                <remove name="right.reports.product.viewed"/>
+                <remove name="left.reports.product.viewed"/>
+                <block type="reports/product_viewed" after="right.leftnav" name="right.reports.product.viewed-2" template="reports/product_viewed.phtml" />
+            </block>
+            <block type="page/html_footer" name="footer" as="footer" template="page/html/footer.phtml">
+                <block type="page/html_wrapper" name="bottom.container" as="bottomContainer" translate="label">
+                    <label>Page Footer</label>
+                    <action method="setElementClass">
+                        <value>bottom-container</value>
+                    </action>
+                </block>
+                <block type="page/switch" name="store_switcher" as="store_switcher"
+                       template="page/switch/stores.phtml" />
+                <block type="tag/popular" name="tags_popular_footer" template="tag/popular.phtml" />
+                <block type="newsletter/subscribe" name="left.newsletter_footer"
+                       template="newsletter/subscribe.phtml" />
+            </block>
+            <block type="core/text_list" name="before_body_end" as="before_body_end" translate="label">
+                <label>Page Bottom</label>
+            </block>
+        </block>
+        <block type="core/profiler" output="toHtml" name="core_profiler" />
+    </default>
+    <print translate="label" module="page">
+        <label>All Pages (Print Version)</label>
+        <!-- Mage_Page -->
+        <block type="page/html" name="root" output="toHtml" template="page/print.phtml">
+            <block type="page/html_head" name="head" as="head">
+                <action method="addJs">
+                    <script>prototype/prototype.js</script>
+                </action>
+                <action method="addJs">
+                    <script>mage/translate.js</script>
+                </action>
+                <action method="addJs">
+                    <script>lib/ccard.js</script>
+                </action>
+                <action method="addJs">
+                    <script>prototype/validation.js</script>
+                </action>
+                <action method="addJs">
+                    <script>varien/js.js</script>
+                </action>
+                <action method="addCss">
+                    <stylesheet>css/styles.css</stylesheet>
+                </action>
+                <action method="addItem">
+                    <type>skin_css</type>
+                    <name>css/styles-ie.css</name>
+                    <params />
+                    <if>lt IE 8</if>
+                </action>
+                <action method="addCss">
+                    <stylesheet>css/widgets.css</stylesheet>
+                </action>
+                <action method="addCss">
+                    <stylesheet>css/print.css</stylesheet>
+                    <params>media="print"</params>
+                </action>
+                <action method="addItem">
+                    <type>js</type>
+                    <name>lib/ds-sleight.js</name>
+                    <params />
+                    <if>lt IE 7</if>
+                </action>
+                <action method="addItem">
+                    <type>skin_js</type>
+                    <name>js/ie6.js</name>
+                    <params />
+                    <if>lt IE 7</if>
+                </action>
+            </block>
+            <block type="core/text_list" name="content" as="content" translate="label">
+                <label>Main Content Area</label>
+            </block>
+        </block>
+    </print>
+    <!-- Custom page layout handles -->
+    <page_empty translate="label">
+        <label>All Empty Layout Pages</label>
+        <reference name="root">
+            <action method="setTemplate">
+                <template>page/empty.phtml</template>
+            </action>
+            <!-- Mark root page block that template is applied -->
+            <action method="setIsHandle">
+                <applied>1</applied>
+            </action>
+        </reference>
+    </page_empty>
+    <page_one_column translate="label">
+        <label>All One-Column Layout Pages</label>
+        <reference name="root">
+            <action method="setTemplate">
+                <template>page/1column.phtml</template>
+            </action>
+            <!-- Mark root page block that template is applied -->
+            <action method="setIsHandle">
+                <applied>1</applied>
+            </action>
+        </reference>
+    </page_one_column>
+    <page_two_columns_left translate="label">
+        <label>All Two-Column Layout Pages (Left Column)</label>
+        <reference name="root">
+            <action method="setTemplate">
+                <template>page/2columns-left.phtml</template>
+            </action>
+            <!-- Mark root page block that template is applied -->
+            <action method="setIsHandle">
+                <applied>1</applied>
+            </action>
+        </reference>
+    </page_two_columns_left>
+    <page_two_columns_right translate="label">
+        <label>All Two-Column Layout Pages (Right Column)</label>
+        <reference name="root">
+            <action method="setTemplate">
+                <template>page/2columns-right.phtml</template>
+            </action>
+            <!-- Mark root page block that template is applied -->
+            <action method="setIsHandle">
+                <applied>1</applied>
+            </action>
+        </reference>
+    </page_two_columns_right>
+    <page_three_columns translate="label">
+        <label>All Three-Column Layout Pages</label>
+        <reference name="root">
+            <action method="setTemplate">
+                <template>page/3columns.phtml</template>
+            </action>
+            <!-- Mark root page block that template is applied -->
+            <action method="setIsHandle">
+                <applied>1</applied>
+            </action>
+        </reference>
+    </page_three_columns>
+    <catalog_product_view translate="label">
+        <reference name="right">
+            <remove name="catalog.product.related" />
+        </reference>
+        <reference name="content">
+            <!--<block type="checkout/cart_sidebar" name="cart_footer" after="product.info"-->
+                   <!--template="checkout/cart/sidebar.phtml">-->
+                <!--<action method="addItemRender">-->
+                    <!--<type>simple</type>-->
+                    <!--<block>checkout/cart_item_renderer</block>-->
+                    <!--<template>checkout/cart/sidebar/default.phtml</template>-->
+                <!--</action>-->
+                <!--<action method="addItemRender">-->
+                    <!--<type>grouped</type>-->
+                    <!--<block>checkout/cart_item_renderer_grouped</block>-->
+                    <!--<template>checkout/cart/sidebar/default.phtml</template>-->
+                <!--</action>-->
+                <!--<action method="addItemRender">-->
+                    <!--<type>configurable</type>-->
+                    <!--<block>checkout/cart_item_renderer_configurable</block>-->
+                    <!--<template>checkout/cart/sidebar/default.phtml</template>-->
+                <!--</action>-->
+                <!--<block type="core/text_list" name="cart_sidebar.extra_actions" as="extra_actions" translate="label"-->
+                       <!--module="checkout">-->
+                    <!--<label>Shopping Cart Sidebar Extra Actions</label>-->
+                <!--</block>-->
+            <!--</block>-->
+            <remove name="cart_footer"/>
+            <block type="catalog/product_compare_sidebar" after="product.info" name="catalog.compare.footer"
+                   template="catalog/product/compare/sidebar.phtml" />
+            <block type="catalog/product_list_related" after="product.info" name="catalog.product.after"
+                   template="catalog/product/list/related.phtml" />
+        </reference>
+        <reference name="product.info.additional">
+            <remove name="product_tag_list" />
+        </reference>
+    </catalog_product_view>
+</layout>

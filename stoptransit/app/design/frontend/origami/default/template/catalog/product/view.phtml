@@ -1,0 +1,197 @@
+<?php $_helper = $this->helper('catalog/output'); ?>
+<?php $_product = $this->getProduct(); ?>
+<script type="text/javascript">
+    var optionsPrice = new Product.OptionsPrice(<?php echo $this->getJsonConfig() ?>);
+</script>
+
+<!-- Put this script tag to the <head> of your page -->
+<script type="text/javascript" src="http://userapi.com/js/api/openapi.js?49"></script>
+
+<script type="text/javascript">
+  VK.init({apiId: 3025463, onlyWidgets: true});
+</script>
+
+
+<div id="messages_product_view"><?php echo $this->getMessagesBlock()->getGroupedHtml() ?></div>
+<div class="product-view">
+    <div class="product-essential">
+    <form action="<?php echo $this->getSubmitUrl($_product) ?>" method="post" id="product_addtocart_form"<?php if($_product->getOptions()): ?> enctype="multipart/form-data"<?php endif; ?>>
+        <div class="no-display">
+            <input type="hidden" name="product" value="<?php echo $_product->getId() ?>" />
+            <input type="hidden" name="related_product" id="related-products-field" value="" />
+        </div>
+        <div class="product-shop">
+            <div class="product-name">
+                <h1><?php echo $_helper->productAttribute($_product, $_product->getName(), 'name') ?></h1>
+            </div>
+
+            <?php if ($this->canEmailToFriend()): ?>
+                <p class="email-friend"><a href="<?php echo $this->helper('catalog/product')->getEmailToFriendUrl($_product) ?>"><?php echo $this->__('Email to a Friend') ?></a></p>
+            <?php endif; ?>
+
+            <?php echo $this->getReviewsSummaryHtml($_product, false, true)?>
+            <?php echo $this->getChildHtml('alert_urls') ?>
+            <?php echo $this->getChildHtml('product_type_data') ?>
+            <?php echo $this->getTierPriceHtml() ?>
+            <?php echo $this->getChildHtml('extrahint') ?>
+
+            <?php if (!$this->hasOptions()):?>
+                <div class="add-to-box">
+                    <?php if($_product->isSaleable()): ?>
+                        <?php echo $this->getChildHtml('addtocart') ?>
+                        <?php if( $this->helper('wishlist')->isAllow() || $_compareUrl=$this->helper('catalog/product_compare')->getAddUrl($_product)): ?>
+                            <span class="or"><?php echo $this->__('OR') ?></span>
+                        <?php endif; ?>
+                    <?php endif; ?>
+                    <?php echo $this->getChildHtml('addto') ?>
+                </div>
+                <?php echo $this->getChildHtml('extra_buttons') ?>
+            <?php elseif (!$_product->isSaleable()): ?>
+                <div class="add-to-box">
+                    <?php echo $this->getChildHtml('addto') ?>
+                </div>
+            <?php endif; ?>
+
+            <?php if ($_product->getShortDescription()):?>
+                <div class="short-description">
+                    <h2><?php echo $this->__('Quick Overview') ?></h2>
+                    <div class="std"><?php echo $_helper->productAttribute($_product, nl2br($_product->getShortDescription()), 'short_description') ?></div>
+                </div>
+            <?php endif;?>
+
+            <?php echo $this->getChildHtml('other');?>
+
+            <?php if ($_product->isSaleable() && $this->hasOptions()):?>
+                <?php echo $this->getChildChildHtml('container1', '', true, true) ?>
+            <?php endif;?>
+
+        </div>
+
+        <div class="product-img-box">
+            <?php echo $this->getChildHtml('media') ?>
+        </div>
+
+        <div class="clearer"></div>
+        <?php if ($_product->isSaleable() && $this->hasOptions()):?>
+            <?php echo $this->getChildChildHtml('container2', '', true, true) ?>
+        <?php endif;?>
+    </form>
+    <script type="text/javascript">
+    //<![CDATA[
+        var productAddToCartForm = new VarienForm('product_addtocart_form');
+        productAddToCartForm.submit = function(button, url) {
+            if (this.validator.validate()) {
+                var form = this.form;
+                var oldUrl = form.action;
+
+                if (url) {
+                   form.action = url;
+                }
+                var e = null;
+                try {
+                    this.form.submit();
+                } catch (e) {
+                }
+                this.form.action = oldUrl;
+                if (e) {
+                    throw e;
+                }
+
+                if (button && button != 'undefined') {
+                    button.disabled = true;
+                }
+            }
+        }.bind(productAddToCartForm);
+
+        productAddToCartForm.submitLight = function(button, url){
+            if(this.validator) {
+                var nv = Validation.methods;
+                delete Validation.methods['required-entry'];
+                delete Validation.methods['validate-one-required'];
+                delete Validation.methods['validate-one-required-by-name'];
+                if (this.validator.validate()) {
+                    if (url) {
+                        this.form.action = url;
+                    }
+                    this.form.submit();
+                }
+                Object.extend(Validation.methods, nv);
+            }
+        }.bind(productAddToCartForm);
+    //]]>
+    </script>
+    </div>
+	<div id="fb-root"></div>
+	<script>(function(d, s, id) {
+	  var js, fjs = d.getElementsByTagName(s)[0];
+	  if (d.getElementById(id)) return;
+	  js = d.createElement(s); js.id = id;
+	  js.src = "//connect.facebook.net/ru_RU/all.js#xfbml=1";
+	  fjs.parentNode.insertBefore(js, fjs);
+	}(document, 'script', 'facebook-jssdk'));</script>
+	
+	
+	<div class='social_sety' style='margin-left: 200px; margin-top: 10px; position: absolute;'>
+		<div style='margin-left: 130px; position: absolute;z-index:99; '>
+			<div id="vk_like" style='background: none repeat scroll 0 0 transparent; height: 22px; width: 180px;'></div>
+		</div>
+		<!-- Put this div tag to the place, where the Like block will be -->
+		<script type="text/javascript">
+		VK.Widgets.Like("vk_like", {type: "button"});
+		</script>
+		<div style='position:absolute;margin-left:-20px;' class="fb-like" data-href="http://stoptransit.com<?php echo $_SERVER['REQUEST_URI'];?>" data-send="false" data-layout="button_count" data-width="450" data-show-faces="true"></div>
+		<div style='position:absolute;margin-left:300px;' id="tw_like">
+			<a href="https://twitter.com/share" class="twitter-share-button" data-lang="ru">Твитнуть</a>
+			<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+		</div>
+		
+		<div style='position:absolute;margin-left:415px;'>
+			<!-- Поместите этот тег туда, где должна отображаться кнопка +1. -->
+			<g:plusone></g:plusone>
+
+			<!-- Поместите этот вызов функции отображения в соответствующее место. -->
+			<script type="text/javascript">
+			  window.___gcfg = {lang: 'ru'};
+
+			  (function() {
+				var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+				po.src = 'https://apis.google.com/js/plusone.js';
+				var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+			  })();
+			</script>
+		</div>
+		
+		<div style='margin-top:30px;'>
+			<span style='float:left;font-size:14px;'>Рассказать друзьям:</span>
+			<div style='float:left;margin-left:20px;'>
+				<a target="_blank" title="Поделиться В Контакте" onclick="window.open('http://vk.com/share.php?url=http%3A%2F%2Fstoptransit.com<?php echo $_SERVER['REQUEST_URI'];?>', '_blank', 'scrollbars=0, resizable=1, menubar=0, left=200, top=200, width=554, height=421, toolbar=0, status=0');return false" href="#" style="display:block;width:32px;height:32px;margin:0 0 6px;outline:none;background:url(http://stoptransit.com/skin/frontend/origami/default/images/icons11111.png) -224px 0" rel="nofollow"></a>
+			</div>
+			<div style='float:left;margin-left:20px;'>
+				<a target="_blank" title="Поделиться в Facebook" onclick="window.open('http://www.facebook.com/sharer.php?u=http%3A%2F%2Fstoptransit.com<?php echo $_SERVER['REQUEST_URI'];?>', '_blank', 'scrollbars=0, resizable=1, menubar=0, left=200, top=200, width=550, height=440, toolbar=0, status=0');return false" href="#" style="display:block;width:32px;height:32px;margin:0 0 6px;outline:none;background:url(http://stoptransit.com/skin/frontend/origami/default/images/icons11111.png) -0px 0" rel="nofollow"></a>
+			</div>
+			<div style='float:left;margin-left:20px;'>
+				<a target="_blank" title="Добавить в Twitter" onclick="window.open('http://twitter.com/share?text=%D0%9A%D0%BD%D0%BE%D0%BF%D0%BA%D0%B8%20%C2%AB%D0%BC%D0%BD%D0%B5%20%D0%BD%D1%80%D0%B0%D0%B2%D0%B8%D1%82%D1%81%D1%8F%C2%BB%20%D0%B2%D0%BA%D0%BE%D0%BD%D1%82%D0%B0%D0%BA%D1%82%D0%B5%2C%20facebook%2C%20%D1%82%D0%B2%D0%B8%D1%82%D0%BD%D1%83%D1%82%D1%8C%20%D0%B8%20google%20%2B1&url=http%3A%2F%2Fstoptransit.com<?php echo $_SERVER['REQUEST_URI'];?>', '_blank', 'scrollbars=0, resizable=1, menubar=0, left=200, top=200, width=550, height=440, toolbar=0, status=0');return false" href="#" style="display:block;width:32px;height:32px;margin:0 0 6px;outline:none;background:url(http://stoptransit.com/skin/frontend/origami/default/images/icons11111.png) -192px 0" rel="nofollow"></a>
+			</div>
+			<div style='float:left;margin-left:20px;'>
+				<a target="_blank" title="Добавить +1 и поделиться в Google+" onclick="window.open('https://plusone.google.com/_/+1/confirm?hl=ru&url=http%3A%2F%2Fstoptransit.com<?php echo $_SERVER['REQUEST_URI'];?>', '_blank', 'scrollbars=0, resizable=1, menubar=0, left=200, top=200, width=550, height=440, toolbar=0, status=0');return false" href="#" style="display:block;width:32px;height:32px;margin:0 0 6px;outline:none;background:url(http://stoptransit.com/skin/frontend/origami/default/images/icons11111.png) -64px 0" rel="nofollow"></a>
+			</div>
+			<div style='float:left;margin-left:20px;'>
+				<a target="_blank" title="Отправить на e-mail другу" href="http://www.feedburner.com/fb/a/emailFlare?loc=ru_RU&itemTitle=%D0%9A%D0%BD%D0%BE%D0%BF%D0%BA%D0%B8%20%C2%AB%D0%BC%D0%BD%D0%B5%20%D0%BD%D1%80%D0%B0%D0%B2%D0%B8%D1%82%D1%81%D1%8F%C2%BB%20%D0%B2%D0%BA%D0%BE%D0%BD%D1%82%D0%B0%D0%BA%D1%82%D0%B5%2C%20facebook%2C%20%D1%82%D0%B2%D0%B8%D1%82%D0%BD%D1%83%D1%82%D1%8C%20%D0%B8%20google%20%2B1&uri=http%3A%2F%2Fstoptransit.com<?php echo $_SERVER['REQUEST_URI'];?>" style="display:block;width:32px;height:32px;margin:0 0 6px;outline:none;background:url(http://stoptransit.com/skin/frontend/origami/default/images/icons11111.png) -352px 0" rel="nofollow"></a>
+			</div>
+		</div>
+	</div>
+		
+	<div class="product-collateral">
+<?php foreach ($this->getChildGroup('detailed_info', 'getChildHtml') as $alias => $html):?>
+        <div class="box-collateral <?php echo "box-{$alias}"?>">
+            <?php if ($title = $this->getChildData($alias, 'title')):?>
+            <h2><?php echo $this->escapeHtml($title); ?></h2>
+            <?php endif;?>
+            <?php echo $html; ?>
+        </div>
+<?php endforeach;?>
+        <?php echo $this->getChildHtml('upsell_products') ?>
+        <?php echo $this->getChildHtml('product_additional_data') ?>
+    </div>
+</div>
+

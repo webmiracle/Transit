@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <Dev_Stoptranzit>
+            <active>true</active>
+            <codePool>local</codePool>
+        </Dev_Stoptranzit>
+    </modules>
+</config>

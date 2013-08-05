@@ -1,0 +1,71 @@
+<script>
+    jQuery(document).ready(function(){
+
+        jQuery('.show_view_proizv').click(function(){
+            jQuery('.img_view_proizv').attr({'src':jQuery(this).attr('src')});
+            jQuery('.name_view_proizv').text(jQuery(this).next().val());
+            jQuery('.opis_view_proizv').text(jQuery(this).next().next().val());
+            jQuery('.back_fon').show();
+            jQuery('.view_proizv').show();
+            return false;
+        });
+
+        jQuery('.close_view_proizv').click(function(){
+            jQuery('.back_fon').hide();
+            jQuery('.view_proizv').hide();
+        });
+        jQuery('.back_fon').click(function(e){
+            e.stopPropagation();
+            jQuery('.back_fon').hide();
+            jQuery('.view_proizv').hide();
+        });
+
+
+    });
+</script>
+<div class='back_fon' style='display:none;background-color:black;opacity:0.6;position:fixed;top:0;left:0;width:100%;height:100%;z-index:999;'></div>
+<div class='view_proizv' style='text-align:left;display:none;padding:2%;background-color:white;position:fixed;top:140px;margin-left:-300px;left:50%;width:600px;z-index:1000;height:auto;'>
+    <img class='close_view_proizv' src='/img/close.png' style='display:block;width:20px;height:20px;cursor:pointer;position:fixed;z-index:1002;margin-left:640px;margin-top:-55px;'/>
+    <div class='name_view_proizv' style='text-align:center;color: #04538B; font-size: 20px;margin-bottom:20px;'></div>
+    <img class='img_view_proizv' src='' style='width:150px;text-align:left;float:left;margin-right:10px;'/>
+    <div class='opis_view_proizv' style='text-align:left;margin-bottom:30px;'></div>
+</div>
+<div class="logoSlider">
+    <a class="backImages carousel-nav"></a> <a class="nextImages carousel-nav"></a>
+    <div class="carousel smallCarousel">
+        <ul style="margin-left: 0px;">
+            <?php
+            $sql="SELECT * FROM eav_attribute_option WHERE attribute_id=966 OR attribute_id=1025 OR attribute_id=1052 OR attribute_id=1065 OR attribute_id=1050 OR attribute_id=1012 OR attribute_id=978 OR attribute_id=1009 OR attribute_id=1007 OR attribute_id=1049 OR attribute_id=990 OR attribute_id=1045 OR attribute_id=1038 OR attribute_id=1019 OR attribute_id=1088";
+            $sql=mysql_query($sql);
+            while($r=mysql_fetch_array($sql)){
+
+                $option=$r['option_id'];
+                $sql1="SELECT * FROM eav_attribute WHERE attribute_id=".$r['attribute_id'];
+                $sql1=mysql_query($sql1);
+                while($rr=mysql_fetch_array($sql1)){
+                    $label=$rr['attribute_code'];
+                }
+
+                $sql1="SELECT * FROM eav_attribute_option_value WHERE option_id=".$r['option_id']." AND store_id=0";
+                $sql1=mysql_query($sql1);
+                while($rr=mysql_fetch_array($sql1)){
+                    $img_proizv='';
+                    $sql2="SELECT * FROM proizv WHERE option_proizv='".$label.$option."'";
+                    $sql2=mysql_query($sql2);
+                    while($rrr=mysql_fetch_array($sql2)){
+                        $img_proizv=$rrr['img_proizv'];
+                        $name_proizv=$rrr['name_proizv'];
+                        $desc_proizv=$rrr['desc_proizv'];
+                    }
+                    if($img_proizv!=''){
+                        echo "<li><div style='width:110px;text-align:center;'>"
+                            ."<img class='img_original show_view_proizv' src='/img/".$img_proizv."'/>"
+                            ."<input type='hidden' value='".$name_proizv."' />"
+                            ."<input type='hidden' value='".$desc_proizv."' /></div></li>";
+                    }
+                }
+            }
+            ?>
+        </ul>
+    </div>
+</div>

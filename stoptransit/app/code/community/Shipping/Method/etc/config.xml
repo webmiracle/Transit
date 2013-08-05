@@ -1,0 +1,88 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <Shipping_Method>
+            <version>0.1.0</version>
+        </Shipping_Method>
+    </modules>
+    <global>
+        <models>
+            <shipping_method>
+                <class>Shipping_Method_Model</class>
+            </shipping_method>
+        </models>
+        
+        <blocks>
+            <shipping_method>
+                <class>Shipping_Method_Block</class>
+            </shipping_method>
+            <checkout>
+                <rewrite>
+                    <onepage_payment_methods>Shipping_Method_Block_Onepage_Payment_Methods</onepage_payment_methods>
+                </rewrite>
+            </checkout>
+        </blocks>
+        <helpers>
+            <shipping_method>
+                <class>Shipping_Method_Helper</class>
+            </shipping_method>
+        </helpers>
+        <!--<resources>-->
+            <!--<shipping_method_setup>-->
+                <!--<setup>-->
+                    <!--<module>Shipping_Method</module>-->
+                <!--</setup>-->
+            <!--</shipping_method_setup>-->
+        <!--</resources>-->
+    </global>
+
+    <default>
+        <carriers>
+            <store_pickup>
+                <active>1</active>
+                <model>shipping_method/carrier_storepickup</model>
+                <title>Pickup At Store</title>
+            </store_pickup>
+            <new_post>
+                <active>1</active>
+                <model>shipping_method/carrier_newpost</model>
+                <title>New Post</title>
+                <total_for_free>500</total_for_free>
+            </new_post>
+            <courier_city >
+                <active>1</active>
+                <model>shipping_method/carrier_couriercity</model>
+                <title>Courier City</title>
+                <total_for_free>100</total_for_free>
+                <shipping_cost>15</shipping_cost>
+            </courier_city >
+            <courier_region>
+                <active>1</active>
+                <model>shipping_method/carrier_courierregion</model>
+                <title>Courier Region</title>
+            </courier_region>
+        </carriers>
+
+        <payment>
+            <!--<checkmo>-->
+                <!--<active>1</active>-->
+                <!--<model>payment/method_checkmo</model>-->
+                <!--<order_status>pending</order_status>-->
+                <!--<title>Check / Money order</title>-->
+                <!--<allowspecific>0</allowspecific>-->
+                <!--<group>offline</group>-->
+            <!--</checkmo>-->
+
+            <!--<banktransfer>-->
+                <!--<active>1</active>-->
+            <!--</banktransfer>-->
+
+            <!--<cashondelivery>-->
+                <!--<active>1</active>-->
+            <!--</cashondelivery>-->
+        </payment>
+
+
+    </default>
+
+</config>

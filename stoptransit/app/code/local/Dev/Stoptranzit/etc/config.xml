@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <Dev_Stoptranzit>
+            <version>0.1.0</version>
+        </Dev_Stoptranzit>
+    </modules>
+    <global>
+        <models>
+            <dev_stoptranzit>
+                <class>Dev_Stoptranzit_Model</class>
+            </dev_stoptranzit>
+        </models>
+        <blocks>
+            <dev_stoptranzit>
+                <class>Dev_Stoptranzit_Block</class>
+            </dev_stoptranzit>
+        </blocks>
+        <helpers>
+            <dev_stoptranzit>
+                <class>Dev_Stoptranzit_Helper</class>
+            </dev_stoptranzit>
+        </helpers>
+        <resources>
+            <dev_stoptranzit_setup>
+                <setup>
+                    <module>Dev_Stoptranzit</module>
+                </setup>
+            </dev_stoptranzit_setup>
+        </resources>
+    </global>
+</config>

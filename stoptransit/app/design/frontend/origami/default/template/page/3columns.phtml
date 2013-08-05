@@ -1,0 +1,107 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="<?php echo $this->getLang() ?>" lang="<?php echo $this->getLang() ?>">
+<head>    <?php echo $this->getChildHtml('head') ?>
+    <script type="text/javascript">
+        jQuery(function () {
+            jQuery(".gallery").jCarouselLite({                btnNext: ".nnext", btnPrev: ".pprev", speed: 500, auto: null            });
+        });
+    </script>
+    <style>        .nnext {
+            -moz-transition: all 0.3s ease-in-out 0s;
+            background-image: url("http://stoptransit.com/img/strelki.png");
+            background-position: -50px 0;
+            background-repeat: no-repeat;
+            cursor: pointer;
+            float: right;
+            height: 86px;
+            width: 50px;
+            margin-top: -137px;
+            margin-right: 10px;
+            z-index: 99;
+            position: relative;
+            opacity: 0.6;
+        }
+
+        .nnext:hover {
+            opacity: 1;
+        }
+
+        .pprev {
+            -moz-transition: all 0.3s ease-in-out 0s;
+            background-image: url("http://stoptransit.com/img/strelki.png");
+            background-position: 0 0;
+            background-repeat: no-repeat;
+            cursor: pointer;
+            float: left;
+            height: 86px;
+            width: 50px;
+            margin-top: 15px;
+            margin-right: 10px;
+            margin-left: 10px;
+            z-index: 99;
+            position: relative;
+            opacity: 0.6;
+        }
+
+        .pprev:hover {
+            opacity: 1;
+        }
+
+        .page-title {
+            margin-left: 200px;
+            border: none;
+        }    </style>
+</head>
+<body<?php echo $this->getBodyClass() ? ' class="' . $this->getBodyClass() . '"' : '' ?>>
+<?php echo $this->getChildHtml('after_body_start') ?>
+<div class="wrapper"><?php echo $this->getChildHtml('global_notices') ?>
+    <div class="page"><?php echo $this->getChildHtml('header') ?>
+        <div class="main-container col3-layout">
+            <div class="main"><?php echo $this->getChildHtml('breadcrumbs') ?>
+                <div class="col-wrapper">
+                    <div class="col-main">    <?php echo $this->getChildHtml('global_messages') ?>    <?php echo $this->getChildHtml('content') ?>
+
+                        <?php echo $this->getLayout()->createBlock('cms/block')->setBlockId('news_block')->toHtml() ?>
+
+                        <?php echo $this->getLayout()->createBlock('core/template')->setTemplate('catalog/brands.phtml')->toHtml() ?>
+                    </div>
+                    <div><a class="click-for-hide-left" href="#">&#32;</a></div>
+                    <div class="left-sidebar">
+                        <div class="col-left sidebar">
+                            <div class="leftclickhide"></div><?php echo $this->getChildHtml('left') ?></div>
+                    </div>
+                </div>
+                <div class="col-right sidebar"><?php echo $this->getChildHtml('right') ?>        <?php $banners = Mage::helper('banner_banner')->getRandoBannerById(2, 2); ?>        <?php if ($banners) : ?>            <?php foreach ($banners as $banner) : ?>
+                        <div style='cursor:pointer;margin-top:30px'>            <?php            $imageInfo = pathinfo($banner->getImgBaner());            $imageExtension = strtolower($imageInfo['extension']);            ?>            <?php if (in_array($imageExtension, Mage::helper('banner_banner')->getImageTypes)) : ?>
+                                <a target='_blank' href='/img/<?php echo $banner->getImgBaner() ?>'>
+                                    <img width='250' height='250' src='/img/<?php echo $banner->getImgBaner() ?>' />
+                                </a>;            <?php else : ?>
+                                <object width='250' height='250' style='cursor:pointer;'>
+                                    <param name='movie' value='/img/<?php echo $banner->getImgBaner() ?>'>
+                                    <param name='wmode' value='opaque' />
+                                    <embed src='/img/<?php echo $banner->getImgBaner() ?>' wmode='opaque' width='250' height='290' style='cursor:pointer;'></embed>
+                                </object>            <?php endif; ?>
+                        </div>        <?php endforeach; ?>        <?php endif;  ?>
+                    <div style='margin-top:30px;'>
+                        <script type="text/javascript" src="http://userapi.com/js/api/openapi.js?49"></script>
+                        <!-- VK Widget -->
+                        <div id="vk_groups"></div>
+                        <script type="text/javascript">            VK.Widgets.Group("vk_groups", {mode: 0, width: "250", height: "290"}, 27522260);        </script>
+                    </div>
+                    <div style='margin-top:30px;'>
+                        <div id="fb-root"></div>
+                        <script>(function (d, s, id) {
+                                var js, fjs = d.getElementsByTagName(s)[0];
+                                if (d.getElementById(id)) return;
+                                js = d.createElement(s);
+                                js.id = id;
+                                js.src = "//connect.facebook.net/ru_RU/all.js#xfbml=1";
+                                fjs.parentNode.insertBefore(js, fjs);
+                            }(document, 'script', 'facebook-jssdk'));</script>
+                        <div class="fb-like-box" data-href="https://www.facebook.com/pages/StopTransit/278373488879502" data-width="250" data-height="290" data-show-faces="true" data-stream="false" data-header="true"></div>
+                    </div>
+                </div>
+            </div>
+        </div><?php echo $this->getChildHtml('footer') ?><?php echo $this->getChildHtml('before_body_end') ?></div>
+</div><?php echo $this->getAbsoluteFooter() ?></body>
+</html>

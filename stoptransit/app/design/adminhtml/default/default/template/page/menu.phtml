@@ -1,0 +1,213 @@
+<script type='text/javascript' src='/js/jquery/jquery-1.7.1.min.js'></script>
+<script>
+    jQuery(document).ready(function () {
+        jQuery('.show_edit_baner').click(function () {
+
+            jQuery('.top_fon').show();
+            jQuery('.edit_baner').show();
+            return false;
+        });
+
+        jQuery('.close_edit_baner').click(function () {
+            jQuery('.top_fon').hide();
+            jQuery('.edit_baner').hide();
+        });
+
+        jQuery('#select_proizvoditel').change(function () {
+            jQuery('#desc_proizv').val(jQuery('#id_' + jQuery(this).val()).val());
+            jQuery('#img_proizv').attr({src: '/img/' + jQuery('#id_' + jQuery(this).val()).next().val()});
+            jQuery('#hide_proizvod').val(jQuery(this).val());
+            jQuery('#name_proizv').val(jQuery('#id_' + jQuery(this).val()).next().next().val());
+        });
+    });
+</script>
+<div class="nav-bar">
+    <!-- menu start -->
+    <?php echo $this->getMenuLevel($this->getMenuArray()); ?>
+    <!-- menu end -->
+    <a class='show_edit_baner'
+       style='color: white; float: left; margin-left: 10px;  margin-top: 5px; text-decoration: none;'
+       href='#'>Банера</a>
+    <a id="page-help-link"
+       href="<?php echo Mage::helper('adminhtml')->getPageHelpUrl() ?>"><?php echo $this->__('Get help for this page') ?></a>
+    <script type="text/javascript">$('page-help-link').target = 'magento_page_help'</script>
+</div>
+
+<?php
+$style = 'display:none;';
+if (isset($_COOKIE['baner'])) {
+
+    if ($_COOKIE['baner'] != '') {
+        $style = '';
+    }
+}
+?>
+<div class='top_fon' style='<?php echo $style; ?>background-color:black;opacity:0.6;position:fixed;top:0;left:0;width:100%;height:100%;z-index:999;'>
+</div>
+<div class='edit_baner'
+     style='<?php echo $style; ?>overflow-x:auto;padding:2%;text-align:left;background-color:white;position:fixed;top:5%;left:7%;width:80%;z-index:1000;height:80%;'>
+    <img class='close_edit_baner' src='/img/close.png' style='cursor:pointer;position:fixed;z-index:1000;right:4%;top:2%;'/>
+    <h1 style='text-align:center;'>Редактор банеров или производителей</h1>
+    <div style='float:left'>
+        <h2>Добавление банера</h2>
+
+        <form action='' method='POST' enctype="multipart/form-data">
+            <div>Выберите объект банера(swf, gif, png, jpg)</div>
+            <input type='file' name='add_img_baner' value=''/><br/><br/>
+
+            <div>Укажите ссылку куда переходить при нажатие на банер:</div>
+            <input style='width:206px;' type='text' name='add_url_baner' value=''/><br/><br/>
+
+            <div>Выберите область отображение банера:</div>
+            <select name='add_block_baner' style='width:210px;height:25px;'>
+                <option value='1'>Главная страница (большие банера)</option>
+                <option value='2'>Правый блок (средние банера)</option>
+            </select>
+            <br/><br/>
+            <input type='submit' style='cursor:pointer;' value='Добавить банер'/>
+        </form>
+    </div>
+
+    <div style='float:left;margin-left:70px;'>
+        <h2>Редактор производителя</h2>
+
+        <form action='' method='POST' enctype="multipart/form-data">
+            <div>Выберите производителя</div>
+            <select name='select_proizvoditel' id='select_proizvoditel' style='width:210px;height:25px;'>
+                <?php
+
+                Mage::helper('banner_producer')->sad();
+                $pro = Mage::helper('banner_producer')->getPro();
+                $val = Mage::helper('banner_producer')->getVal();
+                for ($i = 1; $i <= count($val); $i++) : ?>
+                    <option value='<?php echo $val[$i]; ?>'>
+                        <?php echo $pro[$i]; ?>
+                    </option>
+                <?php endfor; ?>
+            </select>
+
+            <?php
+            echo Mage::helper('banner_producer')->getImageProducerHtml();
+            $data  = Mage::helper('banner_producer')->getFirstProducerData();
+            ?>
+            <br/><br/>
+            <input type='hidden' value='<?php echo $pro[1]; ?>' id='name_proizv' name='name_proizv'/>
+
+            <div>Описание производителя:</div>
+            <textarea cols='50' rows='8' id='desc_proizv' name='desc_proizv'><?php echo $data['desc_proizv'] ;?></textarea>
+            <br/><br/>
+            <?php
+            echo "<div><img id='img_proizv' src='/img/" . $data['img_proizv'] . "'/></div>";
+            ?>
+            <div>Выберите иконку производителя(png, jpg)</div>
+            <input type='file' name='img_proizv' value=''/>
+
+            <br/><br/>
+            <input type='submit' style='cursor:pointer;' value='Добавить или заменить'/>
+        </form>
+        <form action='' method='POST' enctype="multipart/form-data">
+            <input type='hidden' value='<?php echo $val[1]; ?>' id='hide_proizvod' name='hide_proizvod'>
+            <input type='submit' title='Очистка данных производителя' style='cursor:pointer;' value='Очистить'/>
+        </form>
+    </div>
+
+    <div style='clear:both;'></div>
+    <h2 style='margin-top:30px;'>Просмотр, редактирование, удаление банера</h2>
+
+    <div style='margin-bottom:40px;'>
+        <?php
+        $i = 0;
+        foreach (Mage::getModel('banner_banner/banner')->getCollection() as $banner) {
+            $imageInfo = pathinfo($banner->getImgBaner());
+            $imageExtension = strtolower($imageInfo['extension']);
+            if (in_array($imageExtension, Mage::helper('banner_banner')->getImageTypes())) {
+                echo "<form  action='' method='POST' enctype='multipart/form-data'>";
+                $i = $i + 1;
+                if ($i > 1) {
+                    echo "<div style='font-size:18px;margin-top:40px;'>" . $i . ". Банер</div>";
+                } else {
+                    echo "<div style='font-size:18px;'>" . $i . ". Банер</div>";
+                }
+                echo "<br/>";
+                echo "<input type='hidden' name='edit_id_baner' value='" . $banner->getData('id_baner'). "'/>";
+                echo "<div><img src='/img/" . $banner->getData('img_baner') . "'/></div>";
+
+                echo "<div>Заменить объект банера:</div>";
+                echo "<input type='file' name='edit_img_baner' /><br/><br/>";
+
+                echo "<div>Ссылка:</div>";
+                echo "<input style='width:206px;' type='text' name='edit_url_baner' value='" . $banner->getData('url_baner') . "'/><br/><br/>";
+
+                echo "<div>Область отображения</div>";
+                echo "<select name='edit_block_baner' style='width:210px;height:25px;'><br/><br/>";
+                if ($banner->getData('block_baner') == 1) {
+                    echo "<option value='1' selected='selected' >Главная страница (большие банера)</option>";
+                    echo "<option value='2'>Правый блок (средние банера)</option>";
+                } else {
+                    echo "<option value='1'>Главная страница (большие банера)</option>";
+                    echo "<option value='2' selected='selected' >Правый блок (средние банера)</option>";
+                }
+                echo "</select><br/><br/>";
+
+                echo "<input style='cursor:pointer;' type='submit' value='Сохранить'>";
+                echo "</form>";
+
+                echo "<form  action='' method='POST'>";
+                echo "<input type='hidden' value='" . $banner->getData('id_baner') . "' name='del_id_baner' />";
+                echo "<input style='cursor:pointer;margin-left:20px;' type='submit' value='Удалить'>";
+                echo "</form>";
+
+
+            } else {
+                if ($imageExtension == 'swf') {
+                    echo "<form  action='' method='POST' enctype='multipart/form-data'>";
+                    $i = $i + 1;
+                    if ($i > 1) {
+                        echo "<div style='font-size:18px;margin-top:40px;'>" . $i . ". Банер</div>";
+                    } else {
+                        echo "<div style='font-size:18px;'>" . $i . ". Банер</div>";
+                    }
+                    echo "<br/>";
+                    echo "<input type='hidden' name='edit_id_baner' value='" . $banner->getData('id_baner')  . "'/>";
+                    echo "<div><object><param name='movie' value='/img/" . $banner->getData('img_baner')  . "'><embed src='/img/" . $banner->getData('img_baner') . "'></embed></object></div>";
+
+                    echo "<div>Заменить объект банера:</div>";
+                    echo "<input type='file' name='edit_img_baner' /><br/><br/>";
+
+                    echo "<div>Ссылка:</div>";
+                    echo "<input style='width:206px;' type='text' name='edit_url_baner' value='" . $banner->getData('url_baner') . "'/><br/><br/>";
+
+                    echo "<div>Область отображения</div>";
+                    echo "<select name='edit_block_baner' style='width:210px;height:25px;'><br/><br/>";
+                    if ($banner->getData('block_baner') == 1) {
+                        echo "<option value='1' selected='selected' >Главная страница (большие банера)</option>";
+                        echo "<option value='2'>Правый блок (средние банера)</option>";
+                    } else {
+                        echo "<option value='1'>Главная страница (большие банера)</option>";
+                        echo "<option value='2' selected='selected' >Правый блок (средние банера)</option>";
+                    }
+                    echo "</select><br/><br/>";
+                    echo "<input style='cursor:pointer;' type='submit' value='Сохранить'>";
+                    echo "</form>";
+                    echo "<form  action='' method='POST'>";
+                    echo "<input type='hidden' value='" . $banner->getData('id_baner') . "' name='del_id_baner' />";
+                    echo "<input style='cursor:pointer;margin-left:20px;' type='submit' value='Удалить'>";
+                    echo "</form>";
+                } else {
+                    Mage::helper('banner_banner')->deleteBanner($banner->getData('id_baner'));
+//                    $sql1 = "DELETE FROM baners WHERE id_baner=" . $banner->getData('id_baner');
+//                    $sql1 = mysql_query($sql1);
+                }
+            }
+        }
+
+        if (isset($_COOKIE['baner']) && $_COOKIE['baner']!= '') {
+            echo "<script>alert('" . $_COOKIE['baner'] . "')</script>";
+        }
+
+        setcookie("baner", '');
+
+        ?>
+    </div>
+</div>
+

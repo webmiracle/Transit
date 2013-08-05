@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <Import_Product>
+            <active>true</active>
+            <codePool>community</codePool>
+        </Import_Product>
+    </modules>
+</config>
