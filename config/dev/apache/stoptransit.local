@@ -1,0 +1,7 @@
+<VirtualHost *:80>
+    ServerAdmin webmaster@localhost
+    ServerName stoptransit.local
+    ServerAlias www.stoptransit.local
+    DocumentRoot /usr/share/www/stoptransit.local
+</VirtualHost>
+

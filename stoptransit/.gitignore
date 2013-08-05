@@ -1,4 +1,4 @@
-.idea/
+.idea/*
 app/etc/local.xml
 app/.htaccess
 errors/

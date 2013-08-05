@@ -1,13 +1,2 @@
-.idea/
-app/etc/local.xml
-errors/
-.htaccess
-index.php
-media/customer/*
-media/catalog/*
-media/captcha/*
-media/css/*
-media/js/*
-media/.htaccess
-var/
-!var/.htaccess
+.idea/*
+stoptransit/.htaccess
