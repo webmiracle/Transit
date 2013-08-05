@@ -1,11 +1,7 @@
 .idea/*
 app/etc/local.xml
 app/.htaccess
-errors/
 index.php
-index.php.sample
-install.php
-mage
 media/customer/
 media/catalog/
 media/.htaccess
