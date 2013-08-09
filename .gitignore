@@ -1,3 +1,4 @@
 .idea/*
 stoptransit/.htaccess
 stoptransit/media
+/public_html
