@@ -8,7 +8,7 @@ class Dev_Callback_IndexController extends Mage_Core_Controller_Front_Action
             $this->norouteAction();
         }
 
-        $post  = $this->getRequest()->getPost();
+        $post  = $this->getRequest()->getParams();
         if (isset($post['cbfirstname']) && isset($post['cblastname'])&&
             isset($post['cbphone']) && isset($post['cbquestion'])
             && $email  =  Mage::getStoreConfig('trans_email/ident_general/email')
