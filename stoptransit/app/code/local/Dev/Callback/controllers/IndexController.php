@@ -22,7 +22,7 @@ class Dev_Callback_IndexController extends Mage_Core_Controller_Front_Action
             $emailTemplate->setSenderName($post['cbfirstname']);
             $emailTemplate->setSenderEmail('callback@form.com');
            # $emailTemplate->setTemplateSubject(Questions from ');
-            $emailTemplate->setTemplateSubject('Перезвоните мне'. $post['cbphone']);
+            $emailTemplate->setTemplateSubject('Перезвоните мне -'. $post['cbphone']);
             $emailTemplate->send($email,'Stoptransit', $post);
         }
     }
