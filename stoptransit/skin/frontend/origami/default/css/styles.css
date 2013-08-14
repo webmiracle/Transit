@@ -3739,6 +3739,7 @@ tr.summary-details-excluded { font-style:italic; }
     top: 140px;
     width: 550px;
     z-index: 1000;
+    border-radius: 5px;
 }
 .closeCallBack{
     display: block;
