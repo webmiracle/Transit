@@ -3781,9 +3781,6 @@ tr.summary-details-excluded { font-style:italic; }
     background-image: url("../images/phone-icon.png");
     background-repeat: no-repeat;
 }
-.quick-access .links .call-back-top{
-    display: none;
-}
 
 .homepagePopup{
     position: fixed;
