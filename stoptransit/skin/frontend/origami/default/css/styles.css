@@ -3835,3 +3835,10 @@ tr.summary-details-excluded { font-style:italic; }
     right: 6px;
 
 }
+/*HIDING STYLES*/
+.nav-container-left-menu{
+    display: none;
+}
+.cms-menu-test-page .nav-container-left-menu{
+    display: block;
+}

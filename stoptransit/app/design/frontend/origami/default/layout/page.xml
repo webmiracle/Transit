@@ -88,6 +88,9 @@
                     <stylesheet>css/slider.css</stylesheet>
                 </action>
                 <action method="addCss">
+                    <stylesheet>css/menu.css</stylesheet>
+                </action>
+                <action method="addCss">
                     <stylesheet>css/jquery.mCustomScrollbar.css</stylesheet>
                 </action>
             </block>
