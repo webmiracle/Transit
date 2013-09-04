@@ -1,48 +1,1 @@
-<?php /*
-	session_start();
-	if(!(isset($_SESSION['site_created']))){
-*/ ?>
-	<!-- <div class="fon_back_alert" style="position:fixed;width:100%;height:100%;opacity:0.7;background-color:black;z-index:9990;top:0;left:0;">
-	</div>
-	<div class="back_alert" style="border:1px solid black;background-color:#4976A0;position:fixed;z-index:9999;top:20%;left:35%;color:white;">
-		<img src="/img/1111111.jpg">
-		<div class="close_alert" title='' style="padding:10px;background-color:black;color:white;cursor:pointer;text-align:center;">
-			ПРОДОЛЖИТЬ
-		</div>
-	</div> -->
-<?php /*}
-	$_SESSION['site_created']="1";
-*/
-?>
-
-<div class="header-container">
-    <div class="header">
-        <?php if ($this->getIsHomePage()):?>
-        <h1 class="logo"><strong><?php echo $this->getLogoAlt() ?></strong><a href="<?php echo 'http://stoptransit.com'; ?>" title="<?php echo $this->getLogoAlt() ?>" class="logo"><img src="<?php echo $this->getLogoSrc() ?>" alt="<?php echo $this->getLogoAlt() ?>" /></a></h1>
-        <?php else:?>
-        <a href="<?php echo $this->getUrl('') ?>" title="<?php echo $this->getLogoAlt() ?>" class="logo"><strong><?php echo $this->getLogoAlt() ?></strong><img src="<?php echo $this->getLogoSrc() ?>" alt="<?php echo $this->getLogoAlt() ?>" /></a>
-        <?php endif?>
-        <div class="quick-access">
-       	    <?php echo $this->getChildHtml('topLinks') ?>
-            <?php echo $this->getLayout()->createBlock('cms/block')->setBlockId('phone_cms_block')->toHtml() ?>
-            <?php echo $this->getChildHtml('store_language') ?>
-        </div>
-        <?php echo $this->getChildHtml('topContainer'); ?>
-    </div>
-</div>
-<?php echo $this->getChildHtml('topSearch') ?>
-<?php echo $this->getLayout()->createBlock('cms/block')->setBlockId('main_top_menu')->toHtml() ?>
-<?php echo $this->getChildHtml('store_currency_selector') ?>
-<ul class="additional-menu">
-	<li id="bannner1"><a class="banner-link" href="http://tranzit.com.ua" target="_blank"></a></li>
-	<li id="bannner2"><a class="banner-link" href="http://stoptransit.com.ua" target="_blank"></a></li>
-	<li id="bannner3"><a class="banner-link" href="http://sto-shin.com/" target="_blank"></a>
-            <?php echo $this->getLayout()->createBlock('cms/block')->setBlockId('submenu_sto')->toHtml() ?>
-    </li>
-	<li id="bannner4"><a class="banner-link" href="/wholesale"></a></li>
-	<li id="bannner5"><a class="banner-link" href="/corporate"></a></li>
-	
-	<?php //echo $this->getWelcome() ?> 
-	<?php //echo $this->getAdditionalHtml() ?>
-	
-</ul>
+<?php /*	session_start();	if(!(isset($_SESSION['site_created']))){*/ ?>	<!-- <div class="fon_back_alert" style="position:fixed;width:100%;height:100%;opacity:0.7;background-color:black;z-index:9990;top:0;left:0;">	</div>	<div class="back_alert" style="border:1px solid black;background-color:#4976A0;position:fixed;z-index:9999;top:20%;left:35%;color:white;">		<img src="/img/1111111.jpg">		<div class="close_alert" title='' style="padding:10px;background-color:black;color:white;cursor:pointer;text-align:center;">			ПРОДОЛЖИТЬ		</div>	</div> --><?php /*}	$_SESSION['site_created']="1";*/?><div class="header-container">    <div class="header">        <?php if ($this->getIsHomePage()):?>        <h1 class="logo"><strong><?php echo $this->getLogoAlt() ?></strong><a href="<?php echo 'http://stoptransit.com'; ?>" title="<?php echo $this->getLogoAlt() ?>" class="logo"><img src="<?php echo $this->getLogoSrc() ?>" alt="<?php echo $this->getLogoAlt() ?>" /></a></h1>        <?php else:?>        <a href="<?php echo $this->getUrl('') ?>" title="<?php echo $this->getLogoAlt() ?>" class="logo"><strong><?php echo $this->getLogoAlt() ?></strong><img src="<?php echo $this->getLogoSrc() ?>" alt="<?php echo $this->getLogoAlt() ?>" /></a>        <?php endif?>        <div class="quick-access">       	    <?php echo $this->getChildHtml('topLinks') ?>            <?php echo $this->getLayout()->createBlock('cms/block')->setBlockId('phone_cms_block')->toHtml() ?>            <?php echo $this->getChildHtml('store_language') ?>        </div>        <?php echo $this->getChildHtml('topContainer'); ?>    </div></div><?php echo $this->getChildHtml('topSearch') ?><?php echo $this->getLayout()->createBlock('cms/block')->setBlockId('main_top_menu')->toHtml() ?><?php echo $this->getChildHtml('store_currency_selector') ?><ul class="additional-menu hide-on-test-page">	<li id="bannner1"><a class="banner-link" href="http://tranzit.com.ua" target="_blank"></a></li>	<li id="bannner2"><a class="banner-link" href="http://stoptransit.com.ua" target="_blank"></a></li>	<li id="bannner3"><a class="banner-link" href="http://sto-shin.com/" target="_blank"></a>            <?php echo $this->getLayout()->createBlock('cms/block')->setBlockId('submenu_sto')->toHtml() ?>    </li>	<li id="bannner4"><a class="banner-link" href="/wholesale"></a></li>	<li id="bannner5"><a class="banner-link" href="/corporate"></a></li>	<?php //echo $this->getWelcome() ?>	<?php //echo $this->getAdditionalHtml() ?></ul><?php echo $this->getChildHtml('top.menu.block') ?>
