@@ -27,5 +27,5 @@ Mage::getModel('cms/block')
         <li class="level0 level-top"><a class="level-top" href="{{base url="zapasnue-chasti"}}"><img src="{{skin url="images/top_menu/zapchasti.png"}}" alt="" /></a></li>
         </ul>
 </div>
-')
+')->setStores(0)
     ->save();

@@ -18,5 +18,5 @@ Mage::getModel('cms/block')
 <li class="level0 level-top first parent"><a class="level-top" href="#"><img src="{{skin url="images/left_menu/opt.png"}}" alt="" /></a></li>
 <li class="level0 level-top first parent"><a class="level-top" href="#"><img src="{{skin url="images/left_menu/corp.png"}}" alt="" /></a></li>
 </ul>
-')
+')->setStores(0)
     ->save();
