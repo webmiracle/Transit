@@ -93,6 +93,11 @@
                 <action method="addCss">
                     <stylesheet>css/jquery.mCustomScrollbar.css</stylesheet>
                 </action>
+                <action method="addItem">
+                    <type>skin_js</type>
+                    <name>js/menu.js</name>
+                </action>
+
             </block>
             <block type="core/text_list" name="after_body_start" as="after_body_start" translate="label">
                 <label>Page Top</label>
