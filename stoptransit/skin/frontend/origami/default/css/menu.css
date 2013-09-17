@@ -20,11 +20,13 @@
     float: left;
     position: relative;
 }
-#top_menu_block a.level-top{
+
+#top_menu_block a.level-top {
     z-index: 999;
     background: #04538B;
     position: relative;
 }
+
 #top_menu_block a.level-top img {
     opacity: 0.8;
 }
@@ -60,49 +62,115 @@
     -moz-box-shadow: 0px 0px 3px 3px #04538B;
     -o-box-shadow: 0px 0px 3px 3px #04538B;
 }
-#top_menu_block .sub-menu-col{
+
+#top_menu_block .sub-menu-col {
     float: left;
     width: 150px;
 }
-#top_menu_block .sub-menu-col ul{
+
+#top_menu_block .sub-menu-col ul {
     padding-bottom: 15px;
 }
-#top_menu_block .sub-menu-col ul>li a{
+
+#top_menu_block .sub-menu-col ul>li a {
     padding-left: 5px;
 }
-#top_menu_block a.sub-menu-title{
+
+#top_menu_block a.sub-menu-title {
     font-size: 13px;
     font-weight: bold;
     text-decoration: none;
     padding: 10px 0 0 0;
 }
 
-.complex-menu{width: 600px;}
-.complex-nav{
-    float:left; width: 200px;  margin: -20px;
-
+.complex-menu {
+    width: 600px;
 }
-.complex-nav ul{padding: 0;}
-.complex-nav li{ padding: 5px 10px;
+
+.complex-nav {
+    float: left;
+    width: 200px;
+    margin: -20px;
+}
+
+.complex-nav ul {
+    padding: 0;
+}
+
+.complex-nav li {
+    padding: 5px 10px;
     border-bottom: 1px solid #ededed;
     cursor: pointer;
 }
-.complex-nav li:hover, .complex-nav li.active{
-    background: #aecfea; /* Old browsers */
-    background: -moz-linear-gradient(top,  #aecfea 0%, #04538b 100%); /* FF3.6+ */
-    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#aecfea), color-stop(100%,#04538b)); /* Chrome,Safari4+ */
-    background: -webkit-linear-gradient(top,  #aecfea 0%,#04538b 100%); /* Chrome10+,Safari5.1+ */
-    background: -o-linear-gradient(top,  #aecfea 0%,#04538b 100%); /* Opera 11.10+ */
-    background: -ms-linear-gradient(top,  #aecfea 0%,#04538b 100%); /* IE10+ */
-    background: linear-gradient(top,  #aecfea 0%,#04538b 100%); /* W3C */
-    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#aecfea', endColorstr='#04538b',GradientType=0 ); /* IE6-9 */
 
+.complex-nav li:hover, .complex-nav li.active {
+    background: #aecfea; /* Old browsers */
+    background: -moz-linear-gradient(top, #aecfea 0%, #04538b 100%); /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #aecfea), color-stop(100%, #04538b)); /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(top, #aecfea 0%, #04538b 100%); /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(top, #aecfea 0%, #04538b 100%); /* Opera 11.10+ */
+    background: -ms-linear-gradient(top, #aecfea 0%, #04538b 100%); /* IE10+ */
+    background: linear-gradient(top, #aecfea 0%, #04538b 100%); /* W3C */
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#aecfea', endColorstr='#04538b', GradientType=0); /* IE6-9 */
 }
-.complex-nav li:hover a, .complex-nav li.active a{color: #fff;}
-.complex-nav li a{color: #000; text-decoration: underline; background: url(../images/menu_arrow.png) 99% 50% no-repeat; display: block; padding-right: 10%; }
-.complex-nav li a:hover{background-position: 100% 50%; text-decoration: underline;}
-.complex-submenu{margin-left: 200px; color: #3c3c3c;}
-.complex-col{ display: inline-block; width: 170px; padding-right: 10px; vertical-align: top;}
-.complex-submenu ul{padding-bottom: 20px;}
-.complex-submenu a.sub-menu-title{color:#3c3c3c;}
-.complex-submenu a{color: #04538B;}
+
+.complex-nav li:hover a, .complex-nav li.active a {
+    color: #fff;
+}
+
+.complex-nav li a {
+    color: #000;
+    text-decoration: underline;
+    background: url(../images/menu_arrow.png) 99% 50% no-repeat;
+    display: block;
+    padding-right: 10%;
+}
+
+.complex-nav li a:hover {
+    background-position: 100% 50%;
+    text-decoration: underline;
+}
+
+.complex-submenu {
+    margin-left: 200px;
+    color: #3c3c3c;
+}
+
+.complex-col {
+    display: inline-block;
+    width: 170px;
+    padding-right: 10px;
+    vertical-align: top;
+}
+
+.complex-submenu ul {
+    padding-bottom: 20px;
+}
+
+.complex-submenu a.sub-menu-title {
+    color: #3c3c3c;
+}
+
+.complex-submenu a {
+    color: #04538B;
+}
+
+.menu-right .complex-nav {
+    float: right;
+}
+
+.menu-right .complex-nav li a {
+    color: #000;
+    text-decoration: underline;
+    background: url(../images/menu_arrow_r.png) 1% 50% no-repeat;
+    padding-right: 0;
+    padding-left: 10%;
+    text-align: right;
+}
+.menu-right .complex-nav li a:hover {
+    background-position: 0 50%;
+}
+.menu-right .complex-submenu {
+    margin-right: 200px;
+    margin-left: 0;
+}

@@ -5,7 +5,7 @@ jQuery.fn.mainMenu = function () {
             mainItems = mainItem.find('li.level-top'),
             subItems = mainItems.find('div.sub-menu');
 
-        subItems.each(function () {
+        subItems.each(function (indx, val) {
             var el = jQuery(this),
                 elWidth = el.find('.sub-menu-col').length * 150;
             if (!el.hasClass('complex-menu')) {
@@ -30,6 +30,12 @@ jQuery.fn.mainMenu = function () {
                 if (delta < 0) {
                     el.css('left', (delta - 70));
                 }
+            }
+        })
+
+        mainItems.each(function(indx, val){
+            if((indx) >= mainItems.length/2){
+                jQuery(this).addClass('menu-right')
             }
         })
 
