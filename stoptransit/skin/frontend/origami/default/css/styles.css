@@ -916,7 +916,7 @@ tr.summary-details-excluded { font-style:italic; }
 }
 .header-container {
 	position:fixed;
-	z-index: 999;
+	z-index: 1000;
 	width:999px;}
 .header {
 	padding:10px 10px 0px 10px;
