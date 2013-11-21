@@ -36,6 +36,7 @@ class Import_Product_Model_Handler extends Import_Product_Model_Abstract
         'sku' => '',
         'price' => '',
         'special_group_price' => '',
+ 	'special_group_price_1' => '',
         'qty' => ''
     );
 
