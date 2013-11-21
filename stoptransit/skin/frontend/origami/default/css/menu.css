@@ -1,8 +1,4 @@
-.cms-menu-test-page .hide-on-test-page {
-    display: none;
-}
-
-.cms-menu-test-page #nav li a {
+#nav li a {
     background-image: none !important;
 }
 

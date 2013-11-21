@@ -129,6 +129,10 @@
                         <value>top-container</value>
                     </action>
                 </block>
+                <block type="cms/block" name="top.menu.block" as="top.menu.block">
+                    <action method="setBlockId"><block_id>top_menu_block</block_id></action>
+                </block>
+
             </block>
             <block type="page/html_breadcrumbs" name="breadcrumbs" as="breadcrumbs" />
             <block type="core/text_list" name="left" as="left" translate="label">
@@ -157,11 +161,14 @@
                 <remove name="catalog.compare.sidebar" />
                 <remove name="checkout_overview" />
                 <remove name="wishlist_sidebar" />
-                <block type="catalog/navigation" name="right.leftnav" before="currency"
-                      template="catalog/navigation/top.phtml" />
+                <block type="core/template" name="right.navigation" template="catalog/navigation/right.phtml" before ="-">
+                    <block type="cms/block" name="right.navigation.block" as="right.navigation.block">
+                        <action method="setBlockId"><block_id>left_menu_block</block_id></action>
+                    </block>
+                </block>
                 <remove name="right.reports.product.viewed"/>
                 <remove name="left.reports.product.viewed"/>
-                <block type="reports/product_viewed" after="right.leftnav" name="right.reports.product.viewed-2" template="reports/product_viewed.phtml" />
+                <block type="reports/product_viewed" after="right.navigation" name="right.reports.product.viewed-2" template="reports/product_viewed.phtml" />
             </block>
             <block type="page/html_footer" name="footer" as="footer" template="page/html/footer.phtml">
                 <block type="page/html_wrapper" name="bottom.container" as="bottomContainer" translate="label">
